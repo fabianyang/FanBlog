@@ -2,15 +2,9 @@
     display:inline-block;
     margin-right: 10px;
 }
-.tag-list a::before{
-    content: "#";
-}
 
 .before-tags-widget ul{
     margin-left: 3px;
-}
-.tags-list-widget a::before{
-    content: "#";
 }
 
 .radius-tag li{

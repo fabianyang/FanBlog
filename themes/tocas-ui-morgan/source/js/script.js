@@ -43,7 +43,7 @@ for(let e in pgnm){
 //detective url is user goto tag search page
 var tagPosi = location.href.split('/').indexOf("tags");
 if(tagPosi != -1){
-    document.getElementById("big-title").innerText += " - #" + location.href.split('/')[tagPosi+1];
+    document.getElementById("big-title").innerText += " - " + decodeURIComponent(location.href.split('/')[tagPosi+1]);
 }
 
 //support youtube

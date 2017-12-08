@@ -7,7 +7,7 @@
         <!-- left section -->
         <div class="eleven wide column" style=" padding: 35px; ">
             <!-- Articles -->
-            <%  for(var i = 0;i < page.posts.data.length;i++){ 
+            <%  for(var i = 0;i < page.posts.data.length;i++){
                 var post = page.posts.data[i];
                 var content = post.excerpt;
                 var date = new Date(post.date);
@@ -29,7 +29,7 @@
                 <!-- / the end of title bar -->
 
                 <p><%= content.replace(/(<([^>]+)>)/ig, ' ') %></p>
-                <a href="<%- url_for(post.path) %>" class="ts circular button">Read More</a>
+                <a href="<%- url_for(post.path) %>" class="ts circular button"><%= theme.excerpt_link %></a>
             </div>
             <% } %>
             <!-- / the end of articles -->
@@ -67,16 +67,16 @@
 
             <!-- Archive -->
             <div class="ts basic segment">
-                <h3><%= __('archive_a') %></h3>
+                <h3><%= __('title.archive') %></h3>
                 <div class="ts relaxed link list">
-                    <%- list_archives({show_count: theme.show_count, type: theme.archive_type, class:'unstyled '}) %>
+                    <%- list_archives({show_count: theme.show_count, type: theme.archive_type, class:'unstyled ', format: 'YYYY MM'}) %>
                 </div>
             </div>
             <!-- the end of  Archive -->
 
             <!-- Side Section -->
             <div class="ts basic segment" style=" margin-bottom: 25px; ">
-                <h3><%= __('tags') %></h3>
+                <h3><%= __('title.tag') %></h3>
                 <div class="ts relaxed link list before-tags-widget">
                     <%- list_tags({show_count: theme.show_count, class:'unstyled tags-list-widget '}) %>
                 </div>

@@ -11,7 +11,7 @@
         <% } %>
 
         <% for (var i in theme.menu){ %>
-            <a class="item" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+            <a class="item" href="<%- url_for(theme.menu[i]) %>"><%= __('menu.'+i) %></a>
         <% } %>
     </div>
 </div>
