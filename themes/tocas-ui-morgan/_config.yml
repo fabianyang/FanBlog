@@ -28,12 +28,12 @@ archive_type: 'monthly'
 show_count: false
 
 # Miscellaneous
-google_analytics:
+# google_analytics:
 favicon: /favicon.png
-twitter:
-google_plus:
-fb_admins:
-fb_app_id:
+# twitter:
+# google_plus:
+# fb_admins:
+# fb_app_id:
 
 #page setting - disquz comment
 enabled_disqus : true
@@ -45,12 +45,19 @@ slogan_random_display : false
 slogan_color: "#404040"
 
 #page setting - blog title color
+#title_color : "#404040"
+#title_background_color :  "#f7f7f7"
 title_color : "#404040"
-title_background_color :  "#f7f7f7"
+title_background_color :  "#FDB92F"
+
+posts_color : "#FFFFFF"
+posts_background_color : '#34BED0'
 
 #page setting - menu color
-menu_text_color : "#5a5a5a"
-menu_background_color : "#f7f7f7"
+#menu_text_color : "#5a5a5a"
+#menu_background_color : "#f7f7f7"
+menu_text_color : "#FFFFFF"
+menu_background_color : "#333333"
 
 #page setting - article color
 article_color : "#3498db"
@@ -63,8 +70,9 @@ about_me : "About Me"
 about_me_content : "I am a dedicated person with a family of four. I enjoy reading, and the knowledge and perspective that my reading gives me has strengthened my teaching skills and presentation abilities. I have been successful at raising a family, and I attribute this success to my ability to plan, schedule, and handle many different tasks at once. This flexibility will help me in the classroom, where there are many different personalities and learning styles."
 
 #footer content
-footer_big_content : ""
-footer_small_content : ""
+# footer_big_content : ""
+# footer_small_content : ""
+footer_background_img: "/img/car-footer.png"
 
 #github setting
 theme: jekyll-theme-cayman

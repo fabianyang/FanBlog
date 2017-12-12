@@ -18,17 +18,17 @@
 <!-- the end of navigation -->
 
 <!-- big bang title -->
-<div class="ts padded horizontally fitted fluid slate" style="background-color: <%= theme.title_background_color %>;">
+<div class="ts padded horizontally fitted fluid slate" style="background-color: <%= !!page.posts ? theme.title_background_color : theme.posts_background_color %>;">
     <!-- ejs : align to post page or index page -->
     <% if(!!page.posts){ %>
         <div class="ts narrow container relaxed stackable grid" id="big-bang-title" style=" padding-left: 35px; ">
     <% } else{ %>
-        <div class="ts very narrow container">
+        <div class="ts very narrow container" >
     <% } %>
         <!-- Title -->
         <h1 class="ts eleven wide column header be-center-h1">
-            <span style="color: <%= theme.title_color %>;" id="big-title"><%= config.title %></span>
-            <div class="sub header" id="slogan-bar" style=" margin-top: 15px; color: <%= theme.title_color %>;"><% if(theme.slogan.length == 1){ %><%=  theme.slogan %><% } %></div>
+            <span style="color: <%= !!page.posts ? theme.title_color : theme.posts_color  %>;" id="big-title"><%= config.title %></span>
+            <div class="sub header" id="slogan-bar" style=" margin-top: 15px; color: <%= !!page.posts ? theme.title_color : theme.posts_color %>;"><% if(theme.slogan.length == 1){ %><%=  theme.slogan %><% } %></div>
         </h1>
         <!-- the end of title -->
     </div>

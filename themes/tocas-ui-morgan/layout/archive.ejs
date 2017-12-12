@@ -6,11 +6,11 @@
 <div class="ts narrow container" style=" margin-bottom: 35px; ">
     <div style=" padding-top: 35px; "><!-- split line--></div>
         <!-- Archives -->
-        <%  
+        <%
             var isFirst = true;
             var last_month = '';
 
-            for(var i = 0;i < page.posts.data.length;i++){ 
+            for(var i = 0;i < page.posts.data.length;i++){
             var post = page.posts.data[i];
             var content = "";
             if(post.content.length > theme.excerpt_length){
@@ -27,7 +27,7 @@
                 <div class="ts doubling link cards four">
             <% } %>
 
-            <% if(last_month != date.getMonth()){ 
+            <% if(last_month != date.getMonth()){
                     last_month = date.getMonth()
             %>
                 </div>
@@ -59,6 +59,9 @@
 <!-- the end of archive section -->
 
 <!-- footer -->
+<div id="footer-wrapper">
+</div>
+<!--
 <div class="ts attached secondary segment">
     <div class="ts narrow container">
         <br>
@@ -79,5 +82,6 @@
         <br>
     </div>
 </div>
+-->
 <!-- the end of footer -->
 <%- partial('partial/footer', {page:page}) %>

@@ -12,7 +12,7 @@
                 <% var date = new Date(page.date); %>
                 <h1 class="ts header">
                     <span style="color: #333;"><%= page.title %></span>
-                    <div class="sub header" style="color: #808080;">Publish: <%= date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate() %> 
+                    <div class="sub header" style="color: #808080;">Publish: <%= date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate() %>
                     <% if (page.tags && page.tags.length){ %> &nbsp;&nbsp;
                         <%- list_tags(page.tags, {
                             show_count: false,
@@ -26,7 +26,7 @@
             <!-- / the end of articles -->
         </div>
         <!-- / left section -->
-        
+
         <% if(theme.enabled_disqus) { %>
             <hr/>
             <div id="disqus_thread" style=" margin-top: 15px; margin-bottom: 25px; "></div>
@@ -92,9 +92,9 @@
     <div class="ts narrow container">
         <br>
         <div class="ts large center aligned header">
-            Powered by Hexo, Theme designs by @hpcslag.
+            Powered by Yang Fan, Theme designs by @yangfan.
             <div class="smaller sub header">
-                Style-Framework Tocas-UI designs by @yamioldmel 
+                Style-Framework Tocas-UI designs by @yamioldmel
             </div>
         </div>
         <br>

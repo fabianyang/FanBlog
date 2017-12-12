@@ -1,14 +1,14 @@
-.tag-list{
-    display:inline-block;
+.tag-list {
+    display: inline-block;
     margin-right: 10px;
 }
 
-.before-tags-widget ul{
+.before-tags-widget ul {
     margin-left: 3px;
 }
 
-.radius-tag li{
-    display:inline-block;
+.radius-tag li {
+    display: inline-block;
     margin-right: 10px;
     margin: 0 16px 16px 0;
     padding: 0 15px;
@@ -22,46 +22,63 @@
     font-size: 14px;
 }
 
-.radius-tag a{
+.radius-tag a {
     color: #666768;
 }
-.radius-tag a:hover{
+
+.radius-tag a:hover {
     color: #108ee9;
 }
 
-.next-prev-post-section{
+.next-prev-post-section {
     width: 100%;
     margin-top: 3em;
     margin-bottom: 9em;
     z-index: 100;
 }
 
-.next-prev-post-section a.styled-border{
+.next-prev-post-section a.styled-border {
     border: 1px solid;
     padding: 6px 13px 6px 13px;
     border-radius: 3px;
 }
-.next-prev-post-section a:first-child{
+
+.next-prev-post-section a:first-child {
     float: left;
 }
-.next-prev-post-section a:first-child::before{
+
+.next-prev-post-section a:first-child::before {
     content: "";
 }
-.next-prev-post-section a:last-child{
+
+.next-prev-post-section a:last-child {
     float: right;
 }
-.next-prev-post-section a:last-child::after{
+
+.next-prev-post-section a:last-child::after {
     content: "";
 }
 
 @media screen and (max-width: 750px) {
-    .be-center-h1{
+    .be-center-h1 {
         text-align: center;
     }
-    .be-center-h1 span{
-        margin : 0px auto;
+    .be-center-h1 span {
+        margin: 0px auto;
     }
-    #big-bang-title{
+    #big-bang-title {
         padding-left: 0px !important;
     }
+}
+
+div#footer-wrapper {
+    height: 232px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+div#footer-wrapper div {
+    margin: 0 auto;
+    width: 960px;
 }
