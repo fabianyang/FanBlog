@@ -36,7 +36,7 @@ favicon: /favicon.png
 # fb_app_id:
 
 #page setting - disquz comment
-enabled_disqus : true
+enabled_disqus : false
 disqus_url : 'https://morgan-hexo-theme.disqus.com/embed.js'
 
 #page setting - slogan

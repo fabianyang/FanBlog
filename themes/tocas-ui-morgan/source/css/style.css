@@ -85,4 +85,6 @@ div#footer-wrapper div {
 
 .ts.text.container img {
     display: block;
+    max-width: 100%;
+    min-width: 20%;
 }
