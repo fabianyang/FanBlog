@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Demo</title>
+</head>
+
+<body style="width:2000px; height:2000px; padding:0; margin:0;">
+	<h1><a href="http://zhouyj668.blog.163.com/blog/static/1125232802013230062896/">用getBoundingClientRect() 来判断页面元素是否位于可视区域  </a></h1>
+	<div id="demo" style=" width:200px; height:200px; margin-top:500px; background:#CC0000;">Demo</div>
+	<div id="debug" style="position:fixed; padding:10px; top:0;right:0; height:500px; overflow:scroll; "></div>
+</body>
+
+</html>
+<script>
+	window.onload = window.onscroll = function () {
+		var obj = document.getElementById('demo');
+		var pos = obj.getBoundingClientRect();
+		if (document.documentElement.getBoundingClientRect) {
+			var w = document.documentElement.clientWidth;
+			var h = document.documentElement.clientHeight;
+			document.getElementById('debug').innerText += (pos.top > h || pos.bottom < 0 || pos.left > w || pos.right < 0 ?
+					"\r不可视　" : "\r>>[可视]　") +
+				"， left:" + pos.left +
+				"， top:" + pos.top +
+				"， right:" + pos.right +
+				"， bottom:" + pos.bottom +
+				"， offsetLeft:" + obj.offsetLeft +
+				"， offsetTop:" + obj.offsetTop +
+				"， page.clientWidth: " + w +
+				"， page.clientHeight: " + h;
+			var X = pos.left + document.documentElement.scrollLeft;
+			var Y = pos.top + document.documentElement.scrollTop;
+			document.getElementById('debug').innerText += "， Demo的位置是X:" + X + ";Y:" + Y;
+			document.getElementById('debug').scrollTop = document.getElementById('debug').scrollHeight;
+		}
+	}
+	document.title = document.getElementById('demo').getBoundingClientRect().left + " : top=" + document.getElementById(
+		'demo').getBoundingClientRect().top;
+
+	function Test1() {
+		var obj = document.getElementById('demo');
+		x = obj.offsetLeft;
+		y = obj.offsetTop;
+		w = obj.offsetWidth;
+		h = obj.offsetHeight;
+		pw = document.documentElement.offsetWidth;
+		ph = document.documentElement.offsetHeight;
+		psw = document.documentElement.scrollWidth;
+		psh = document.documentElement.scrollHeight;
+		pcw = document.documentElement.clientWidth;
+		pch = document.documentElement.clientHeight;
+		var info = ">>\r offsetLeft: " + x +
+			"  \r offsetTop: " + y +
+			"  \r offsetWidth: " + w +
+			"  \r offsetHeight: " + h +
+			"  \r page.offsetWidth: " + pw +
+			"  \r page.offsetHeight: " + ph +
+			"  \r page.scrollWidth: " + psw +
+			"  \r page.scrollHeight: " + psh +
+			"  \r page.clientWidth: " + pcw +
+			"  \r page.clientHeight: " + pch;
+		document.getElementById('debug').innerText += info;
+		document.getElementById('debug').scrollTop = document.getElementById('debug').scrollHeight;
+	};
+	document.body.onclick = Test1;
+</script>
