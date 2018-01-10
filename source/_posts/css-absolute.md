@@ -17,16 +17,124 @@ date: 2017-01-02 15:04:51
 
 ### absolute 与 float 比较
 
-1. 一个属性值，一个属性名
+1. 一个属性值，一个属性名。
 
-2. 包裹性，破坏性。容易导致塌陷。
+特点：宽、高不占据任何尺寸
+
+2. 相同属性表现，包裹性，破坏性。容易导致塌陷。
+
+```css
+.box {
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+input {
+    position: absolute; top: 234px;
+    width: 160px; height: 32px;
+    font-size: 100%;
+}
+```
+
+```html
+<div class="box">
+    <img id="image" src="http://img.mukewang.com/54447b06000171a002560191.jpg" width="256" height="191">
+</div>
+<input id="button" type="button" value="图片absolute化">
+```
+
+```js
+// 破坏性
+var eleImg = document.getElementById("image"), eleBtn = document.getElementById("button");
+if (eleImg != null && eleBtn != null) {
+    eleBtn.onclick = function() {
+        if (this.absolute) {
+            eleImg.style.position = "";
+            this.value = "图片absolute化";
+            this.absolute = false;
+        } else {
+            eleImg.style.position = "absolute";
+            this.value = "图片去absolute";
+            this.absolute = true;
+        }
+    };
+}
+```
+
+```js
+// 包裹性
+var eleBox = document.getElementById("box"), eleBtn = document.getElementById("button");
+if (eleBox != null && eleBtn != null) {
+    eleBtn.onclick = function() {
+        if (this.absolute) {
+            eleBox.style.position = "";
+            this.value = "容器absolute化";
+            this.absolute = false;
+        } else {
+            eleBox.style.position = "absolute";
+            this.value = "容器去absolute";
+            this.absolute = true;
+        }
+    };
+}
+```
+
+
+http://olq0r66c9.bkt.clouddn.com/md/1515591809574.png
+
+http://olq0r66c9.bkt.clouddn.com/md/1515591850379.png
+
 
 3. 页面布局可以相互替换
+
+http://olq0r66c9.bkt.clouddn.com/md/1515591931976.png
 
 
 ### absolute 和 relative 限制
 
+误区
+http://olq0r66c9.bkt.clouddn.com/md/1515592688168.png
+
 1. 独立的 absolute 元素可以摆脱 overflow 限制，无论滚动或隐藏。
+
+因为绝对定位 absolute 并不是相对于其父元素定位的，而是相对于其"包含块"定位的，如果给其父元素 position:relative 另其形成新的"包含块"，内部的关闭按钮就也会滚动了
+
+```css
+body {
+    background-color: #bbb;
+}
+.scroll {
+    width: 500px; height: 300px;
+    margin: 200px auto 0;
+    margin-top: -webkit-calc(50vh - 150px);
+    margin-top: calc(50vh - 150px);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0,0,0,.35);
+    background-color: #fff;
+    overflow: auto;
+}
+.close {
+    position: absolute;
+    width: 34px; height: 34px;
+    margin: -17px 0 0 483px;
+    background: url(http://img.mukewang.com/5444835b000100ce00340075.png) no-repeat;
+}
+.close:hover {
+    background-position: 0 -41px;
+}
+img {
+    display: block;
+    margin: 10px;
+}
+```
+
+```html
+<div class="scroll">
+    <a href="javascript:" class="close" title="关闭"></a>
+    <img src="http://img.mukewang.com/54447b06000171a002560191.jpg">
+    <img src="http://img.mukewang.com/54447f550001ccb002560191.jpg">
+</div>
+```
 
 2. 不受 relative 限制的 absolute 定位。即：使用绝对定位构建不影响其他布局的相对定位。
 
@@ -34,20 +142,157 @@ date: 2017-01-02 15:04:51
 
 表现：脱离文档流。同时固定在初始文档流上方重叠。
 
-#### 实例：图片、图标富态到其它元素上。
+```css
+input[type=button] {
+    height: 32px;
+    font-size: 100%;
+}
+```
+
+```html
+<img src="http://img.mukewang.com/54447b06000171a002560191.jpg">
+<img src="http://img.mukewang.com/54447f4a0001eb7d01910256.jpg">
+<img src="http://img.mukewang.com/54447f550001ccb002560191.jpg">
+<p><input type="button" id="button" value="点击第2张图片应用position:absolute变天使"></p>
+```
+
+```js
+var button = document.getElementById("button"),
+    image2 = document.getElementsByTagName("img")[1];
+if (button && image2) {
+    var value_init = button.value;
+    button.onclick = function() {
+        if (this.value == value_init) {
+            image2.style.position = "absolute";
+            this.value = "撤销"; 
+        } else {
+            image2.style.position = "";
+            this.value = value_init;
+        }
+    };
+}
+```
+
+3. absolute 去除浮动，导致 float 失效
+
+```css
+input[type=button] {
+    height: 32px;
+    font-size: 100%;
+}
+```
+
+```html
+<img src="http://img.mukewang.com/54447b06000171a002560191.jpg">
+<img src="http://img.mukewang.com/54447f4a0001eb7d01910256.jpg">
+<img src="http://img.mukewang.com/54447f550001ccb002560191.jpg">
+<p><input type="button" id="float" value="点击第2张图片应用float:left"></p>
+<p><input type="button" id="button" value="点击第2张图片应用position:absolute"></p>
+```
+
+```js
+var flbtn = document.getElementById("float"),
+    button = document.getElementById("button"),
+    image2 = document.getElementsByTagName("img")[1];
+if (flbtn && button && image2) {
+    var value_init = button.value;
+    button.onclick = function() {
+        if (this.value == value_init) {
+            image2.style.position = "absolute";
+            this.value = "撤销";
+        } else {
+            image2.style.position = "";
+            this.value = value_init;
+        }
+    };
+
+    flbtn.onclick = function() {
+        image2.style["cssFloat" in this.style? "cssFloat": "styleFloat"] = "left";
+    };
+}
+```
+
+4. absolute 与位置跟随
+
+block 水平元素，和文字不会在同一行显示。绝对定位后，依然换行显示。但这个元素如果是 inline 或 inline-block 水平跟在文字后面，在绝对定位后，依然在文字后面。 
+
+- chrome 浏览器下元素 absolute 后改变 `diplay:block;` 不会重新渲染。除非一进页面 absolute 和 `display: block;` 同时存在。
+
+- ie7 下任何元素 absolute 后永远 inline-block 水平，所以只会实现跟随显示效果，不会显示换行效果。
+
+解决：套一层空的 div 。
+
+```css
+input[type=button] {
+    height: 32px;
+    font-size: 100%;
+}
+p { margin-left: 260px; }
+img + p { margin-top: 60px; }
+```
+
+```html
+<img src="http://img.mukewang.com/54447b06000171a002560191.jpg">
+<div><img src="http://img.mukewang.com/54447f4a0001eb7d01910256.jpg"></div>
+<img src="http://img.mukewang.com/54447f550001ccb002560191.jpg">
+<p><input type="button" id="block" value="点击第2张图片应用display:block"></p>
+<p><input type="button" id="button" value="点击第2张图片应用position:absolute变天使"></p>
+```
+
+```js
+var block = document.getElementById("block"),
+    button = document.getElementById("button"),
+    image2 = document.getElementsByTagName("img")[1];
+if (block && button && image2) {
+    var value_init_button = button.value;
+    button.onclick = function() {
+        if (this.value == value_init_button) {
+            image2.style.position = "absolute";
+            this.value = "撤销";
+        } else {
+            image2.style.position = "";
+            this.value = value_init_button;
+        }
+    };
+
+    var value_init_block = block.value;
+    block.onclick = function() {
+        if (this.value == value_init_block) {
+            image2.style.display = "block";
+            this.value = "撤销";
+        } else {
+            image2.style.display = "";
+            this.value = value_init_block;
+        }
+    };
+}
+```
+
+- 配合 margin 的精确定位，支持负值定位，兼容性好，ie6+
+
+#### 不影响绝对定位的相对定位实例
+
+1. 图片、图标使用绝对定位覆盖到其它元素上。
+
 - 优点：自适应性好，省掉多余的 relative
 
 - 原本位置很重要，使用的是 absolute 位置跟随性。
 
-3. absolute 去除浮动，导致 float 失效
+注意 vip 显示位置：众所周知，一个图片跟随一个文字，图片和文字应该一行显示。绝对定位元素宽高不占据尺寸，如果绝对定位元素前面有哪怕 1px 的空白像素间距或其他偏差，由于固定宽度，位置就会错乱。
 
-#### absolute 与位置跟随
+2. 下拉框定位实例
 
-- chrome 一进页面就是 absolute 页面不会重新渲染。除非一进页面 absolute 和 `display: block;` 同时存在。
+写组件时，建议使用，无依赖绝对定位。
 
-- ie7 永远 inline-block 水平
+3. 对齐居中或边缘
 
-- 配合 margin 的精确定位，支持负值定位，兼容性好，ie6+
+使用无依赖绝对定位特性，实现居中或定位效果。
+
+居中效果实现方式举例：
+
+4. 星号显示，图文对齐，文字溢出
+
+> 无依赖绝对定位为页面布局与重构提供了更丰富的选型思路。
 
 ### absolute 的重绘、回流
 
