@@ -122,5 +122,3 @@ z-index: auto;
 应用 relative 最小化影响原则：
 
 独立出一个 relative div 不会占据任何尺寸，里面元素 absolute 定位。这样，relative 只会限制里面的 absolute 元素，不影响其他元素，不会出现层叠的 bug。
-
-

@@ -73,3 +73,78 @@ date: 2017-01-10 15:04:51
     margin-bottom: 15px;
 }
 ```
+
+### margin 与容器尺寸
+
+margin 可以改变容器尺寸。 relative 绝对不会改变容器的尺寸或占用空间。
+
+条件：
+
+1. 适用没有设定 width / height 的普通元素。 `float` `absolute|fixed` `inline` `table-cell` 不适用。
+
+2. 只是用水平方向尺寸。
+
+利用特性：实现一侧定宽的自适应布局。
+
+### margin 与占据尺寸
+
+1. `block` `inline-block` 水平元素适用。
+
+2. 与 width / height 无关。
+
+3. 水平、垂直方向都适用。
+
+利用特性：实现上下留白。 padding 不行。
+
+### margin 与百分比单位
+
+注意：**是相对于宽度计算的**
+
+利用特性：实现宽高 2:1 的容器自适应。
+
+```css
+.box {overflow: hidden;}
+.box > div {margin: 50%;}
+```
+
+### `margin: auto;`
+
+作用机制：
+
+1. 普通元素，没有设置宽高也会自动充满容器。
+
+2. 设置 width / height 后，原本全部填充部分，会出现空白空间。
+
+3. `margin: auto;` 就是为填充这部分空间设计的。
+
+#### 图片为什么没有水平居中？
+
+因为，图片是 inline 水平元素，就算没有 width 页不会占满整个容器，没有剩余空间。
+
+所以，设置 `img{display: block}` 就算没有 width ，也会占满整个空间。
+
+此时，会有剩余空间给 `margin: auto;` 分配。
+
+图片、按钮、视频都属于替换元素 (replace element) 比较特殊。
+
+#### 为什么容器定高，元素定高，`margin: auto` 无法垂直居中
+
+原因还在于有无剩余空间。如果不设定 height 元素会占满整个容器吗？试问自己一下。
+
+Tip: 实现居中用 `margin: auto;` 必须，计算的剩余空间的值，不能是负值。
+
+比如：父元素 `1000px` ，子元素 `2000px` ，`margin: auto;` 不能居中。
+
+##### writing-mode 实现垂直居中。
+
+原理：writing-mode 和 vertical-align 改变页面流方向。
+
+##### 绝对定位元素实现
+
+absolute 的拉伸特性：子元素 `left:0;top:0;right:0;bottom:0;` 填满容器。
+
+同时子元素设置 width / height 。此时，自动填充被干掉，出现空白区域。
+
+ie8+ 支持。
+
+### margin 负值实现定位布局效果
