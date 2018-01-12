@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS3 border-radius圆角各个属性值作用演示实例页面</title>
+<meta name="discription"
+<link rel="stylesheet" href="//mp.gtimg.cn/assetscom/theme/modern/common/ui/Button.css">
+<link rel="stylesheet" href="//mp.gtimg.cn/assetscom/theme/modern/common/ui/Range.css">
+<link rel="stylesheet" href="//mp.gtimg.cn/assetscom/theme/modern/common/ui/Tips.css">
+<style>
+.body { background-color: #fff; }
+.demo { width: 800px; margin-left: auto; margin-right: auto; }
+.demo { font-size: 14px; }
+.demo input { width: 150px; vertical-align: middle; }
+.demo pre { margin: 1em 0; background-color: #f0f3f9; font-size: 16px; }
+.tc { text-align: center; }
+.dib { display: inline-block; }
+.rel { position: relative; }
+
+.radius-test { margin: 2em auto 3em; }
+.radius-test { width: 100px; height: 200px; border: 50px solid #cd0000; border-radius: 300px; }
+</style>
+</head>
+
+<body>
+    <div class="demo">
+        <div id="radiusTest" class="radius-test"></div>
+        <pre class="DlHighlight tc">border-radius: <span id="val_1">300px</span> <span id="val_2">300px</span> <span id="val_3">300px</span> <span id="val_4">300px</span>/<span id="val_5">300px</span> <span id="val_6">300px</span> <span id="val_7">300px</span> <span id="val_8">300px</span>;</pre>
+        <pre class="DlHighlight tc">border-radius: <span id="val_short">300px</span>;</pre>
+        <div class="tc">
+            <div class="dib">
+                <p>七大姑八大婆1(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆2(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆3(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆4(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆5(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆6(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆7(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p>七大姑八大婆8(0-300): <input type="range" class="ui_range_input" min="0" max="300" value="300"></p>
+                <p><a href="javascript:" class="ui_button ui_button_primary" id="button">全部重置为0</a></p>
+            </div>
+        </div>
+    </div>
+    <a href="http://www.zhangxinxu.com/wordpress/?p=4992" id="back">回到相关文章 »</a>
+<script src="//mp.gtimg.cn/assetscom/js/plugin/sea.js"></script>
+<script>
+window.seajs &&
+seajs.config({
+    base: "//mp.gtimg.cn/assetscom/js",
+    alias: {
+        jquery: 'plugin/jquery'
+    }
+}).use(['common/ui/Range'], function(Range) {
+	var elRange = $('#radiusTest'), elShort = $('#val_short'), arrRange = [300,300,300,300,300,300,300,300];
+	var fnMatch = function() {
+		var css_value = '';
+		$.each(arrRange, function(index, value) {
+			value = value + 'px';
+			$('#val_' + (index+1)).html(value);
+
+			var joiner = ' ';
+			if (index == 4) {
+				joiner = '\/';
+			}
+			css_value = css_value + joiner + value;
+		});
+		elRange.css('border-radius', $.trim(css_value));
+		elShort.html(elRange.css('border-radius'));
+	};
+    var elRanges = $('.demo input').range().each(function(index) {
+		$(this).data('index', index).change(function() {
+			var val = this.value, i = $(this).data('index');
+			arrRange[i] = val;
+			fnMatch();
+		});
+	});
+
+	$('#button').click(function() {
+		elRanges.each(function() {
+			$(this).val('0').trigger('change').data('range').position();
+		});
+	});
+});
+</script>
+</body>
+</html>

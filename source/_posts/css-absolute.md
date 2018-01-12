@@ -78,21 +78,15 @@ if (eleBox != null && eleBtn != null) {
 }
 ```
 
-
-http://olq0r66c9.bkt.clouddn.com/md/1515591809574.png
-
-http://olq0r66c9.bkt.clouddn.com/md/1515591850379.png
-
-
 3. 页面布局可以相互替换
 
-http://olq0r66c9.bkt.clouddn.com/md/1515591931976.png
-
+> css-absolute-float-replace
 
 ### absolute 和 relative 限制
 
-误区
-http://olq0r66c9.bkt.clouddn.com/md/1515592688168.png
+误区: *绝对定位 absolute 元素一定需要 relative 限制才能进行定位。*
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1515592688168.png)
 
 1. 独立的 absolute 元素可以摆脱 overflow 限制，无论滚动或隐藏。
 
@@ -164,7 +158,7 @@ if (button && image2) {
     button.onclick = function() {
         if (this.value == value_init) {
             image2.style.position = "absolute";
-            this.value = "撤销"; 
+            this.value = "撤销";
         } else {
             image2.style.position = "";
             this.value = value_init;
@@ -214,7 +208,7 @@ if (flbtn && button && image2) {
 
 4. absolute 与位置跟随
 
-block 水平元素，和文字不会在同一行显示。绝对定位后，依然换行显示。但这个元素如果是 inline 或 inline-block 水平跟在文字后面，在绝对定位后，依然在文字后面。 
+block 水平元素，和文字不会在同一行显示。绝对定位后，依然换行显示。但这个元素如果是 inline 或 inline-block 水平跟在文字后面，在绝对定位后，依然在文字后面。
 
 - chrome 浏览器下元素 absolute 后改变 `diplay:block;` 不会重新渲染。除非一进页面 absolute 和 `display: block;` 同时存在。
 
