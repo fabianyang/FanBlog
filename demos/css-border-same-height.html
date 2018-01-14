@@ -1,0 +1,21 @@
+<style type="text/css">
+.box{border-left: 300px solid pink;float: left;background-color: grey;}
+.left{width: 300px;margin-left: -300px;float: left;}
+</style>
+</head>
+<body>
+	<div class="box">
+		<nav class="left">
+			<h3>nav1</h3>
+		</nav>
+		<section>
+			<div class="module">module1</div>
+		</section>
+	</div>
+	<script>
+		document.getElementsByTagName("h3")[0].onclick = function(e){
+			var nav = document.createElement("h3");
+			nav.innerHTML = "nav...";
+			document.getElementsByClassName("left")[0].append(nav);
+		}
+	</script>
