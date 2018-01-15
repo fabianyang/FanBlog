@@ -1,7 +1,17 @@
+---
+title: CSS border
+categories:
+- CSS
+tags:
+- border
+date: 2017-01-02 15:04:51
+---
 
-## 前言
+# 前言
 
-### 为什么 `border-width` 不支持百分比值？
+链接
+
+## 为什么 `border-width` 不支持百分比值？
 
 `border-width` 不支持百分比值，是由语义和使用场景决定的。
 
