@@ -48,7 +48,7 @@ IE 下为小圆型。利用这个特性可以实现 ie7, ie8 CSS 圆角效果，
 
 ```css
 .box{width:150px;height:150px;overflow:hidden;}
-.dotted{width:100%;height:00%x;border:149px dotted:#cd0000}
+.dotted{width:100%;height:100%x;border:149px dotted:#cd0000}
 ```
 
 > 实现任意大小的园怎么办？
@@ -257,7 +257,6 @@ http://olq0r66c9.bkt.clouddn.com/md/1515939493427.png
 
 上面代码，原先 `border` 变透明用来增加点击区域，真正边框使用盒阴影，现在复选框点击区域大小为 20px*20px ，更加规范。
 
-
 #### 增加可视渲染区域
 
 css3 滤镜 `drop-shadow` 可以给 png 图标变色。原始方式使用 svg, font-face 。
@@ -312,7 +311,7 @@ http://olq0r66c9.bkt.clouddn.com/md/1515940764174.png
 ```
 
 ```css
-.box{border-left:200px solid #222;} 
+.box{border-left:200px solid #222;}
 .left{width:200px;margin-left:-200px;float:left;}
 .module{width:300px;background:yellow;}
 ```
