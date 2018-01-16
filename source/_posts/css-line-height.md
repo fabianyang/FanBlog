@@ -1,9 +1,9 @@
 ---
-title: CSS border
+title: CSS line-height
 categories:
 - CSS
 tags:
-- border
+- line-height height
 date: 2017-01-02 15:04:51
 ---
 
@@ -215,7 +215,83 @@ line-height = 20px / 14px
 body {font-size:14px; line-height: 1.4286}
 ```
 
-### 
+### `line-height` 行高与图片样式的表现
+
+> 行高会不会影响图片实际占据高度？
+
+#### 隐匿文本节点
+
+```html
+<p style="text-align:center;">
+    <img src="mm1.jpg" style="position: absolute;"/>
+</p>
+```
+> 如何消除图片底部间隙？
+
+1. 图片块状化 - 无基线对齐 `img {display:block;}`
+
+`vertical-align` 只适用于内联和内联块状元素，块状元素没有基线对齐，自然不会因为基线对齐留有下面的空隙。
+
+2.图片底线对齐 `img {vertical-align:bottom;}`
+
+默认基线 `baseline` 对齐导致下面的空隙。
+
+3.行高足够小 - 基线位置上移 `img {line-height:0;}`
+
+行高变小，基线上移。
+
+#### 小图片和大文字，图片后跟文字
+
+基本上高度受行高控制，除 ie6 浏览器。
+
+剩下就是图文 `vertical-align` 微调垂直对齐。
+
+### `line-height` 实际应用
+
+基本应用：单行文字垂直居中，间距设置等实现不探讨。
+
+#### 大小不固定图片、多行文字垂直居中
+
+- 图片水平、垂直近似居中
+
+```css
+.box {
+    .box {line-haight:300px;text-align:center;}
+    .box > img {vertical-aling:middle;}
+}
+```
+
+`vertical-aling:middle;` 不是绝对居中，是基线往上 1/2X 的高度。IE8+ 支持。
+
+#### 多行文本水平垂直居中
+
+```css
+box{line-height: 250px; text-align: center;}
+.box > .text{display: inline-block; line-height: normal; text-align: left; vertical-align: middle; max-width: 100%;}
+```
+
+多行文字水平垂直居中实现的原理跟图片的实现原理是一样的，区别在于要把多行文本所在的容器 `display` 水平转换成和图片一样的，也就是`inline-block`（`<img>` 默认就是 `inline-block` 内联块状元素），以及重置外部继承的 `text-align` 和 `line-height` 属性值。IE8+ 支持。
+
+#### `line-height` 代替 `height` ,避免 IE6/IE7 下的 haslayout
+
+IE6, IE7 下元素设置高度属性 `height` ，会使元素有 haslayout ，而设置行高属性 `line-height` 没有 haslayout
+
+一旦元素有了 haslayout ，会冲破父容器，比如：`float:left` `display:inline-block;` 宽度自适应的限制会被破坏。包裹性会受到破坏。
+
+![img716](http://olq0r66c9.bkt.clouddn.com/md/1516111440544.png)
+
+![img880](http://olq0r66c9.bkt.clouddn.com/md/1516111461638.png)
+
+自适应情况，建议 `line-height` 代替 `height` 。
+
+```css
+.div { height:36px;  line-height36px;}
+```
+
+所以，上面代码，`height` 是多余的。
+
+
+
 
 
 
