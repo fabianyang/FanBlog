@@ -46,12 +46,15 @@ Chrome,FireFox 是小方型。
 
 IE 下为小圆型。利用这个特性可以实现 ie7, ie8 CSS 圆角效果，类似 `border-radius` 效果
 
+PS: 最新版本 Chrome 也为小圆型了。
+
+简单模拟圆角，可以使用 `border-style：solid` 梯形简单实现，但如果是纯粹的圆角边框，需要用到边框重叠，标签数会翻倍，感觉得不偿失。
+
 ```css
 .box{width:150px;height:150px;overflow:hidden;}
-.dotted{width:100%;height:100%x;border:149px dotted:#cd0000}
+.dotted{width:100%;height:100%x;border:149px dotted #cd0000}
 ```
-
-> 实现任意大小的园怎么办？
+> 实现任意大小的圆怎么办？
 
 http://olq0r66c9.bkt.clouddn.com/md/1515933619060.png
 
@@ -144,15 +147,15 @@ border:1px solid; color:orange;position:relative;}
 
 ### `border` 与 `background` 定位
 
-border宽度不可使用百分比，受此限制，无法用于百分比布局需要；
+`border` 宽度不可使用百分比，受此限制，无法用于百分比布局需要；
 
-boder-color属性可继承color，因此可用于一次性优化多个布局；
+`boder-color` 属性可继承 `color` ，因此可用于一次性优化多个布局；
 
-border可以透明，transparent属性，可利用此属性生成三角或者梯形；
+`border` 可以透明，`transparent` 属性，可利用此属性生成三角或者梯形.
 
-border-style中的double及dotted可用于创建三条短线样式、圆。
+`border-style` 中的 `double` 及 `dotted` 可用于创建三条短线、圆样式。
 
-border以及background配合使用，可以定位背景图片至右侧。（backgroud-positon默认相对左上角）
+`border` 以及 `background` 配合使用，可以定位背景图片至右侧。（ `backgroud-positon` 默认相对左上角）
 
 ### CSS2.1 `background` 定位的局限
 
@@ -188,7 +191,6 @@ http://olq0r66c9.bkt.clouddn.com/md/1515936139374.png
     border-color: red red transparent transparent;
 }
 ```
-
 
 #### 实现三角的原理
 

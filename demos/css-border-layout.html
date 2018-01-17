@@ -4,21 +4,25 @@
 		<meta charset="UTF-8">
 		<title>Document</title>
 		<style>
-		.box{border-left:200px solid pink;}
-		.left{width:200px;margin-left:-200px;float:left;}
-		.module{width:300px;background:yellow;}
-
+		.test{width:100px; height:100px; border:80px solid; border-color:#ff3300 #0000ff #339966 #00ff00;}
+		.test2{width:0; height:0; border:10px solid; border-color:#ff3300 transparent transparent transparent;}
+		.test3{width:0; height:0; border-width:20px 10px; border-style:solid; border-color:#ff3300 transparent transparent transparent;}
+		.test4{width:0; height:0; border-width:20px 10px; border-style:solid; border-color:#ff3300 #ff3300 transparent transparent;}
 		</style>
 	</head>
 	<body>
-		<div class="box">
-			<nav class="left"> 
-			<!-- HTML5的新标签。定义导航链接的区域-->
-			<a href="#">导航1</a>	
-			</nav>
-			<section>
-			<div class="module">模块1</div>
-			</section>
+		<h5>梯形图案</h5>
+		<div class="test">
 		</div>
+		<h5>从梯形到三角</h5>
+		<div class="test2">
+		</div>
+		<h5>从等腰直角三角形到普通等腰三角</h5>
+		<div class="test3">
+		</div>
+		<h5>从等腰到不等腰</h5>
+		<div class="test4">
+		</div>
+		<h5>ie7+ 支持，ie6 不支持 transparent</h5>
 	</body>
 </html>
