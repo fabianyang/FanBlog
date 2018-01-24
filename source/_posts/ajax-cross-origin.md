@@ -258,6 +258,7 @@ ff.attr({
 
 # 其他参考
 
+> [同源策略](https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy)
 > [8种跨域方式](http://www.cnblogs.com/JChen666/p/3399951.html)
 > [我知道的跨域安全](https://fed.renren.com/2018/01/20/cross-origin/)
 > [浅谈 document.dommain](http://www.codeweblog.com/%E6%B5%85%E8%B0%88document-domain/)
