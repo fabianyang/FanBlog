@@ -1,9 +1,11 @@
 
 # CORS 跨域资源共享 （Cross-Origin Resource Sharing）
 
+CORS 是一个 W3C 标准，允许浏览器向跨源服务器发出 `XMLHttpRequest` 请求，从而克服了AJAX只能同源使用的限制。
+
 CORS 需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE 浏览器不能低于 IE10 。
 
-注意：因为和传统 Ajax 不同，现代浏览器 CORS 跨域，浏览器发出的是 XMLHttpRequest Level 2 请求。所以，实现 CORS 通信的关键是服务器，需要服务器支持 CORS 接口。
+注意：因为和传统 Ajax 不同，现代浏览器 CORS 跨域，浏览器发出的是 XMLHttpRequest Level 2 请求。前端不是很关心发出的是什么样的请求，经常关注点在是否能够获取正确数据。所以，实现 CORS 通信的关键是服务器，需要服务器支持 CORS 接口。
 
 JSONP 只支持 GET 请求， CORS 支持所有类型的 HTTP 请求。 JSONP 的优势在于支持老式浏览器，以及可以向不支持 CORS 的网站请求数据。
 
@@ -233,8 +235,80 @@ User-Agent: Mozilla/5.0...
 
 服务器正常的回应，每次回应都必定包含 `Access-Control-Allow-Origin` 字段。
 
+## 跨域错误现象
+
+注意：只有 Ajax 请求才有跨域错误现象，正常 HTTP 请求是不存在跨域的。
+
+### Error 1
+```
+No 'Access-Control-Allow-Origin' header is present on the requested resource
+The response had HTTP status code 404
+```
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516244846277.png)
+
+错误原因：非简单请求，预检请求失败。服务器端没有提供 `OPTIONS` Method 请求的返回，导致 404。
+
+### Error 2
+```
+No 'Access-Control-Allow-Origin' header is present on the requested resource
+The response had HTTP status code 405
+```
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516245620007.png)
+
+错误原因：服务器端允许 `OPTIONS` Method 请求，但(安全)配置文件阻止返回，比如：文件读写权限问题。
+
+### Error3
+```
+No 'Access-Control-Allow-Origin' header is present on the requested resource
+status 200
+```
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516245634479.png)
+
+错误原因：预检请求依然失败。服务器端检查请求头信息，没有通过。比如： `Origin` 请求源不在白名单内，自定义请求头校验失败。
+
+### Error4
+
+```
+heade contains multiple values '*,*'
+```
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516245681091.png)
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516245694586.png)
+
+错误原因：服务器配置文件配置了 `Access-Control-Allow-Origin`，请求方法内部又添加了一次 `Access-Control-Allow-Origin` 。
+
+## OPTIONS 预检优化
+
+后端或服务器配置 `Access-Control-Max-Age` 可以缓存此次请求的秒数。
+
+在时间内，只进行一次预检请求，验证通过就不需要再次预检。
+
+## 分析 AJAX
+
+1. 正常 CORS
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516249323885.png)
+
+2. 错误 CORS
+
+跨域错误现象已经分析过，基本都是类似的，就是没有满足 `Access-Control-Allow-Origin` `Access-Control-Allow-Headers` `Access-Control-Allow-Methods` `Access-Control-Allow-Credentials`
+
+3. 与 CORS 无关
+
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516249663412.png)
+
+图中的请求，跨域配置没有问题，出错原因是 `request` 的 `Accept` 和 `response` 的 `Content-Type` 不匹配。
+
 ## 总结
 
-用心读完阮老师的文章 [CORS][1] 感觉受益匪浅，之前只是了解添加 `Access-Control-Allow-Origin` 头让服务器返回就可以跨域，但有时候需要指定域名有时候用 `*` 就可以，还有如何 AJAX 请求带上 Cookie 。这些都是知道怎么用但不知道原理。总结一点，这是 W3C 标准，是规定！浏览器按照这个标准实现的，服务器也要遵循这个规则，开发者更要理解可以这样操作原因是什么。
+![img](http://olq0r66c9.bkt.clouddn.com/md/1516244587921.png)
+
+用心读完阮老师的文章 [CORS][1] 感觉受益匪浅，之前只是了解添加 `Access-Control-Allow-Origin` 头让服务器返回就可以跨域，但有时候需要指定域名有时候用 `*` 就可以，还有如何 AJAX 请求带上 Cookie 。这些都是知道怎么用但不知道原理。总结一点，这是 W3C 标准，是规定！浏览器按照这个标准实现的，服务器也要遵循这个规则，开发者更要理解可以这样操作原因是什么。遇到问题时应该多分析，发送的 `XMLHttpRequest` 发送了哪些数据，服务器又 `Response` 了哪些数据，问题出在了哪端。
+
+> 服务器后端 CORS 配置 [参考][2]
 
 [1]: http://www.ruanyifeng.com/blog/2016/04/cors.html
+[2]: https://segmentfault.com/a/1190000012469713#articleHeader8
