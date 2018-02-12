@@ -1,4 +1,11 @@
-
+---
+title: AJAX 跨域
+categories:
+- JavaScript
+tags:
+- CORS
+date: 2017-02-02 15:04:51
+---
 
 ## 前言
 

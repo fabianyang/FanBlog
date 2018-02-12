@@ -1,61 +1,12 @@
-function unique(array) {
-    var result = [];
-    array.forEach(function (v) {
-        if (!result.includes(v)) {
-            result.push(v);
-        }
-    });
-    return result;
-}
-
-'use strict';
-
-
-var obj = document.getElementById('element');
-obj.onclick = function () {
-    console.log('js对象与dom对象循环引用导致了内存泄漏');
+var ws = new WebSocket("ws://www.example.com/socketserver");
+ws.onopen = function (event) {
+    // 或者把此方法注册到其他事件中，即可与其他服务器通信
+    ws.send({
+        username: 'yiifaa',
+        now: Date.now()
+    }); // 通过服务器中转消息
 };
-
-function fn() {
-    var jsObj = document.getElementById('box');
-    jsObj.oncontextmenu = function () {
-        return false;
-    };
+ws.onmessage = function (event) {
+    // 消费消息
+    console.log(event.data);
 }
-
-var name = "bush";
-var obj = {
-    name: "obama",
-    func: function () {
-        return function () {
-            return this.name
-        }
-    }
-}
-alert(obj.func()());
-
-
-var name = "bush";
-var obj = {
-    name: "obama",
-    func: function () {
-        var This = this;
-        return function () {
-            return This.name
-        }
-    }
-}
-alert(obj.func()());
-
-var name = "bush";
-
-var obj = {
-    name: "obama",
-    func: function () {
-        return function () {
-            return this.name
-        }
-    }
-}
-
-alert(obj.func().call(obj));
