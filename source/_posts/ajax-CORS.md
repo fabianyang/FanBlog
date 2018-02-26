@@ -4,7 +4,7 @@ categories:
 - JavaScript
 tags:
 - CORS
-date: 2017-02-01 15:04:51
+date: 2018-02-01 15:04:51
 ---
 
 # CORS 跨域资源共享 （Cross-Origin Resource Sharing）

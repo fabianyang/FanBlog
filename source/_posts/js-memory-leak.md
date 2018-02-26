@@ -1,3 +1,11 @@
+---
+title: JavaScript 内存泄露
+categories:
+- JavaScript
+tags:
+- memory leak
+date: 2018-02-13 15:04:51
+---
 # JavaScript 内存泄露
 
 ## 什么是内存泄露

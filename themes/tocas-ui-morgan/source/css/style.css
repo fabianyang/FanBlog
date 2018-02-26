@@ -76,6 +76,9 @@ div#footer-wrapper {
     width: 100%;
     position: fixed;
     bottom: 0;
+
+    z-index: -1;
+    opacity: .8;
 }
 
 div#footer-wrapper div {

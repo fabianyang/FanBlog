@@ -1,3 +1,11 @@
+---
+title: JavaScript 代码片段
+categories:
+- JavaScript
+tags:
+- code
+date: 2018-02-13 15:04:51
+---
 # 代码片段
 
 ## 前言
@@ -205,8 +213,9 @@ let differenceABSet = new Set([...a].filter(x => !b.has(x)));
 
 ## 推荐
 
-> ([译]非常有用的 48 个 JavaScript 代码片段，值得收藏！)[https://juejin.im/entry/5a791567f265da4e8e7842a2?utm_source=gold_browser_extension]
-> (indexOf和includes的区别)[http://blog.csdn.net/wu_xianqiang/article/details/78681609?utm_source=debugrun&utm_medium=referral]
+([译]非常有用的 48 个 JavaScript 代码片段，值得收藏！)[https://juejin.im/entry/5a791567f265da4e8e7842a2?utm_source=gold_browser_extension]
+
+(indexOf和includes的区别)[http://blog.csdn.net/wu_xianqiang/article/details/78681609?utm_source=debugrun&utm_medium=referral]
 
 [1]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
 [2]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from
